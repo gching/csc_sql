@@ -1,0 +1,8 @@
+country cid name coach
+club fcid name coach
+player pid fname lname position goals value cid fcid
+stadium sid capacity city
+match mid date time sid
+ticket tid dateIssued timeIssued mid
+competes mid country1 country2 goals1 goals2
+appearance mid pid minutes
