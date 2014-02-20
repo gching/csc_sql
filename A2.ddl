@@ -1,3 +1,4 @@
+--1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30
 DROP TABLE country CASCADE;
 DROP TABLE club CASCADE;
 DROP TABLE player CASCADE;
@@ -26,6 +27,7 @@ CREATE TABLE club (
 
 -- The player table contains all the football players participating in World Cup 2014.
 -- 'position' can take the following values: ST, CF, LF, RF, CM, LM, RM, LCM, RCM, LWM, RWM, CB, LB, RB, LCB, RCB, LWB, RWB, GK.
+-- ST|CF|LF|RF|CM|LM|RM|LCM|RCM|LWM|RWM|CB|LB|RB|LCB|RCB|LWB|RWB|GK
 -- 'goals' denotes the number of goals that the player has scored (>= 0).
 -- 'value' is the monetary value of the player in millions dollars (> 0).
 CREATE TABLE player (

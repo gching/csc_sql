@@ -10,6 +10,9 @@ require_relative '../lib/pgconn.rb'
 ## For debugging
 require 'pry'
 
+## For fake data
+require 'faker'
+
 describe 'An instance of', Pgconn do
   before do
     @pgconn = Pgconn.new
@@ -44,12 +47,27 @@ describe 'An instance of', Pgconn do
 
 
   describe "fake data" do
-  	
+  	before do
+      @pgconn.fake_data
+     ## @pgconn.read_all_data
+  	end
+
+    it "should have the correct number of tuples for country" do
+      expect(@pgconn.execute("SELECT * FROM country").ntuples).to eql(10)
+    end
+    
+  end
+
+  describe "drop tables and views" do
+
+  end
+
+  describe "create tables and views" do
 
   end
 
 
-  
+
   describe "a closed" do
   	before do
   	  @pgconn.close_conn
