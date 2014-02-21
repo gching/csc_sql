@@ -20,20 +20,20 @@ class Pgconn
   	## A new Pgconn sets up a new connection to the database cs_assignment1
     @conn = PG::Connection.open(:dbname => 'cs_assignment1')
     @relations = Hash.new
+    prep_statements  
     prepare_all
-    prep_statements
-    fake_data
   end
 
   ## Prepare all the relation's schemas
   def prepare_all
-    puts "Preparing from initial, a2drop, a2tables files"
+    puts "Preparing from a2drop and a2tables files"
     ## Open the file to read each line and output it
-    ["initial", "a2drop", "a2tables"].each do |filename|
+    ["a2drop", "a2tables"].each do |filename|
       read_each_line_file(filename) do |line|
         results = execute(line)
       end
-    end    
+    end
+    
   end
 
   ## Execute a SQL command
@@ -60,6 +60,7 @@ class Pgconn
   def fake_data
     ## Get it from each fake data csv files
     ## Get the keys for the proper file names
+    puts "Putting in fake data."
     @relations.each_key do |key|
       filename = "fake_#{key}.csv"
       ## Open up path for input of CSV data
@@ -75,6 +76,16 @@ class Pgconn
         end
       end
     end
+  end
+
+  ## Puts out the current table names
+  def table_Names
+    ## Return all the keys in an array
+    table_Array = Array.new
+    @relations.each_key do |key|
+      table_Array << key
+    end
+    return table_Array
   end
 
   ## Puts out all data currently in the database to the terminal
@@ -114,6 +125,13 @@ class Pgconn
     append_this("possibleAnswers", "\n\n")
   end
 
+
+  def resetAllData
+    read_each_line_file('initial') do |line|
+        results = execute(line)
+    end
+    fake_data 
+  end
 
 private
 
@@ -171,6 +189,7 @@ private
       drop[0] = "DROP"
       drop = drop.join(" ")
       append_this("a2drop", drop)
+      @relations[drop[2]] = nil
     end
   end
 

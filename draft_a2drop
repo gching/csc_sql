@@ -1,0 +1,17 @@
+DROP TABLE Query1
+DROP TABLE Query2
+DROP TABLE Query3
+DROP TABLE Query4
+DROP TABLE Query5
+DROP TABLE Query6
+DROP TABLE Query7
+DROP VIEW first_match
+DROP VIEW Stad_Match CASCADE
+DROP VIEW list_of_countries_for_stadiums
+DROP VIEW Match_Stad
+DROP VIEW avgMinutesPLayed
+DROP VIEW numberOfPLayedMatchesEach
+DROP VIEW countryValues CASCADE
+DROP VIEW countryWithLowest
+DROP VIEW countryWithBestPlayer
+DROP VIEW ApplicableCountry

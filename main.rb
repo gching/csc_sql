@@ -24,6 +24,7 @@ end
 
 ## Instantiate the connection with the database
 @pgconn = Pgconn.new
+listTables = @pgconn.table_Names
 
 exit_flag = false
 sql_query = nil
@@ -39,6 +40,13 @@ while (exit_flag == false) do
   puts "6) Save last query"
   puts "7) Create view"
   puts "8) Exit"
+  puts "9 Reset all fake Data"
+  puts "Current initial tables are:"
+  puts "//"
+  listTables.each do |name|
+  print " #{name} "
+  end
+  puts "\n//"
 
 
 
@@ -105,6 +113,9 @@ while (exit_flag == false) do
 	      @pgconn.close_conn
 	      exit_flag = true
 	    end
+	  when 9
+	  	puts "Reseting all fake data."
+	  	@pgconn.resetAllData
 	  end
   rescue Exception => error #PG::Error => error
   	puts "Error:"
